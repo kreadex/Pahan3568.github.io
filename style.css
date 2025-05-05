@@ -1,0 +1,285 @@
+/* Переменные для цветов - Новая палитра */
+:root {
+    --bg-main: #F8F8F8;       /* Очень светло-серый */
+    --bg-content: #FFFFFF;     /* Белый */
+    --text-main: #333333;     /* Темно-серый */
+    --text-secondary: #666666; /* Серый */
+    --accent: #e24a4a;         /* Акцентный (красноватый) */
+    --hover-accent: #bd3572;   /* Ховер (розоватый/темнее) */
+    --border-light: #e0e0e0;  /* Светлая граница */
+    --gradient-accent: linear-gradient(45deg, var(--accent), var(--hover-accent)); /* Градиент акцента */
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    /* background-color: var(--bg-main); - Заменяем на градиент */
+    background: radial-gradient(circle at top left, #ffffff, #f0f0f0 80%); /* Легкий радиальный градиент */
+    color: var(--text-main);
+    scroll-behavior: smooth;
+    line-height: 1.6; /* Базовая высота строки */
+}
+
+h1, h2, h3, p, a, .portfolio-item {
+    /* transition: all 0.2s ease-in-out; - Убираем глобальный transition */
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: var(--text-main); /* Основной цвет для заголовков */
+}
+
+/* Навигация - Светлый стиль */
+.main-nav {
+    background-color: var(--bg-content);
+    padding: 15px 0; /* Увеличим отступ */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-light); /* Светлая граница */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Легкая тень */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.main-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.0em;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 4px;
+    position: relative;
+    overflow: visible; /* Меняем на visible или убираем, чтобы видеть ::after */
+    transition: color 0.2s ease-in-out; /* Transition только для цвета */
+}
+
+/* Анимация подчеркивания через scaleX */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Позиция чуть ниже текста */
+    left: 0; /* Начинается слева */
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-accent);
+    transform: scaleX(0); /* Начальное состояние - невидима */
+    transform-origin: center; /* Анимация из центра */
+    transition: transform 0.3s ease-in-out; /* Анимация только transform */
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after
+{
+    /* left: 0; - Убираем */
+    transform: scaleX(1); /* Конечное состояние - видима */
+}
+
+.main-nav a:hover,
+.main-nav a.active
+{
+    color: var(--accent);
+    background-color: transparent;
+}
+
+/* Убираем Параллакс, делаем простые заголовки */
+.parallax-section {
+    min-height: 30vh; /* Меньшая высота */
+    /* background-attachment: fixed; - Убираем */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-main);
+    /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); - Убираем */
+    position: relative;
+    padding: 50px 20px; /* Немного увеличим padding */
+    /* background-color: var(--bg-content); - Заменяем на градиент */
+    border-bottom: 1px solid var(--border-light);
+}
+
+.parallax-section h1 {
+    font-size: 3em; /* Вернем чуть больший размер */
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-main); /* Основной цвет для H1 */
+    /* color: var(--accent); - Убираем акцентный цвет, он будет на фоне */
+}
+
+/* Убираем фоны для конкретных секций */
+.section-home-header,
+.section-projects-header,
+.section-contact-header {
+    /* background: var(--bg-content); - Заменяем на градиент */
+    background: linear-gradient(135deg, #ffffff 0%, #fdf6f6 100%); /* Очень светлый градиент с оттенком */
+}
+
+.content-section {
+    padding: 60px 20px;
+    background-color: var(--bg-main); /* Основной фон */
+    text-align: center;
+}
+
+.content-section h2 {
+    color: var(--text-main);
+    margin-bottom: 40px; /* Больше отступ снизу */
+    font-size: 2em;
+}
+
+/* Секция Обо мне на главной */
+.about-me p {
+    max-width: 700px; /* Ограничим ширину для читаемости */
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-secondary);
+    font-size: 1.1em;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Увеличим minmax */
+    gap: 30px; /* Увеличим отступ */
+    margin-top: 30px;
+}
+
+.portfolio-item {
+    background-color: var(--bg-content);
+    padding: 30px; /* Увеличим padding */
+    border-radius: 8px; /* Чуть больше скругление */
+    /* border: 1px solid var(--accent); - Убираем рамку */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Легкая тень по умолчанию */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Уточненный transition */
+    cursor: pointer;
+    color: var(--text-main);
+    text-align: left; /* Выравнивание по левому краю внутри карточки */
+    position: relative; /* Для градиентной рамки */
+    overflow: hidden; /* Чтобы рамка не выходила за скругления */
+    border: 2px solid transparent; /* Резервируем место под рамку */
+}
+
+/* Градиентная рамка при наведении */
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 2px solid transparent;
+    border-radius: inherit; /* Наследуем скругление */
+    background: var(--gradient-accent) border-box; /* Фон градиента для рамки */
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out; /* Вырезаем центр */
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Чтобы не мешала кликам */
+}
+
+.portfolio-item:hover::before {
+    opacity: 1;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    /* background-color: var(--accent); - Убираем фон при наведении */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Усиление тени */
+    /* color: var(--bg-dark); - Не меняем цвет текста */
+}
+
+/* Стили для описания проекта внутри карточки (пример) */
+.portfolio-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+.portfolio-item p {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+}
+
+.social-links ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.social-links li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.social-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1.1em; /* Вернем более стандартный размер */
+    display: inline-block; /* Возвращаем inline-block */
+    /* Убираем Flex и размеры */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* width: 2.4em; */
+    /* height: 2.4em; */
+    padding: 8px 15px; /* Добавляем padding */
+    border-radius: 20px; /* Овальное скругление для текстовых ссылок */
+    /* position: relative; */
+    /* overflow: hidden; */
+    transition: color 0.25s ease-in-out, background 0.25s ease-in-out, transform 0.2s ease-in-out; /* Обновляем transition */
+    /* z-index: 1; */
+    margin: 5px; /* Небольшой отступ между ссылками */
+}
+
+/* Псевдоэлемент для фона - УДАЛЯЕМ */
+/*
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+*/
+
+.social-links a:hover {
+    color: var(--bg-content);
+    background: var(--gradient-accent); /* Применяем фон напрямую */
+    transform: translateY(-2px); /* Сохраним легкий подъем */
+}
+
+/* УДАЛЯЕМ */
+/*
+.social-links a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+*/
+
+footer {
+    background-color: var(--bg-content);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 30px 0; /* Больше отступ */
+    margin-top: 60px; /* Больше отступ */
+    border-top: 1px solid var(--border-light);
+    font-size: 0.9em;
+} 
